@@ -6,24 +6,21 @@ function Tag() {
   const [isHashTag, setIsHashTag] = useState('');
   const [isHashTagList, setIsHashTagList] = useState(['CodeStates', 'JJang']);
 
-  const onChangeHashtag = (e) => {
-    setIsHashTag(e.target.value);
+  const onChangeHashtag = (e) => setIsHashTag(e.target.value);
+
+  // 중복 태그 isHashTagList에 추가하지 않기
+  const isDuplicate = (isNewHashTagList, newTag) => {
+    const dup = isNewHashTagList.find((tag) => tag === newTag);
+    if(!dup){
+      isNewHashTagList.push(newTag);
+      setIsHashTagList(isNewHashTagList)
+    }
   }
 
   const addNewHashTag = (newTag) => {
     const isNewHashTagList = [...isHashTagList];
     setIsHashTag('');
-
-    // 중복 태그 isHashTagList에 추가하지 않기
-    const isDuplicated = () => {
-      return isNewHashTagList.find((tag) => tag === newTag);
-    }
-
-    if(!isDuplicated()){
-      isNewHashTagList.push(newTag);
-      setIsHashTagList(isNewHashTagList);
-    }
-
+    isDuplicate(isNewHashTagList, newTag)
   }
 
   const onEnterKeyUp = (e) => {
@@ -71,6 +68,7 @@ const TagBox = styled.div`
   font-size: 14px;
   border-radius: 5px;
   margin: 10px;
+  height: 45px;
   &:hover{
     border: 1px solid  ${props => props.theme.palette.purple};
   }
@@ -81,6 +79,7 @@ const InputBox = styled.input`
   outline: none;
   float: left;
   min-height: 30px;  
+  flex-grow: 1;
 `;
 
 const TagItem = styled.div`

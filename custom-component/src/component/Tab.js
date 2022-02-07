@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 function Tab() {
 
-    const TabMenu = [
+    const tabMenu = [
         {
             num: 1,
             content: 'ONE',
@@ -24,7 +24,7 @@ function Tab() {
     <>
     <Tabs>
         {
-            TabMenu.map((value, idx) => (
+            tabMenu.map((value, idx) => (
                 <>
                 <TabPane
                  key={idx}
@@ -38,7 +38,7 @@ function Tab() {
         }
     </Tabs>
     <TabContent>
-        Tab menu {TabMenu[isTabSelected].content}
+        Tab menu {tabMenu[isTabSelected].content}
     </TabContent>
     </>
   );

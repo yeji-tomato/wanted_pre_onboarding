@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-// import './App.css';
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Toggle from './component/Toggle';
@@ -8,6 +6,8 @@ import Tab from './component/Tab';
 import Tag from './component/Tag';
 import AutoComplete from './component/AutoComplete';
 import ClickToEdit from './component/ClickToEdit';
+import Card from './component/my_component/Card';
+import Button from './component/my_component/Button';
 
 function App() {
   
@@ -24,6 +24,7 @@ function App() {
       theme={{
         palette: {
           purple : '#4900CE',
+          blue: '#096dd9',
           lightgray: '#E0E0E0',
           darkgray: '#A9A9A9',
           gray: '#C5C5C5',
@@ -35,7 +36,7 @@ function App() {
       <Content>
         <Card title="Toggle">
             <Toggle />
-          </Card>
+        </Card>
         <Card title="Modal">
           <Button onClick={() => setIsModalVisible(true)}>
             Open Modal
@@ -63,61 +64,5 @@ function App() {
     </ThemeProvider>
   );
 }
-
-// 버튼
-function Button({ children, ...rest }){
-
-  const ButtonStyle = styled.button`
-  cursor: pointer;
-  color: ${props => props.theme.palette.white};
-  background: ${props => props.theme.palette.purple};
-  border: 0;
-  padding: 20px;
-  border-radius: 30px;
-  `
-
-  return (
-    <ButtonStyle {...rest}>
-      {children}
-    </ButtonStyle>
-  )
-}
-
-// 카드
-function Card({ title, children }) {
-    
-  const Card = {
-    Card: styled.div`
-      box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-      max-width: 900px;
-      min-height: 230px;
-      margin: 10px;
-      border-radius: 10px;
-      
-    `,
-    Header: styled.div`
-      font-size: 20px;
-      font-weight: bold;
-      padding: 10px;
-    `,
-    Container: styled.div`
-      max-height: 120px;
-      text-align: center;
-      margin-top: 30px;
-    `
-  }
-
-  return (
-    <Card.Card>
-      <Card.Header>
-        {title}
-      </Card.Header>
-      <Card.Container>
-        {children}
-      </Card.Container>
-    </Card.Card>
-  )
-}
-
 
 export default App;
