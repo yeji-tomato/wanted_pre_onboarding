@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Button from './my_component/Button';
 
-function Modal({ visible, onCancel, children }) {
+function Modal() {
   
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    return (
+    <>
+        <Button onClick={() => setIsModalVisible(true)}>
+            Open Modal
+        </Button>
+        <ModalWindow
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        >
+        Hello Codestates!
+        </ModalWindow>
+    </>
+    );
+}
+
+export default Modal;
+
+function ModalWindow({ visible, onCancel, children }){
     if (!visible) return null
     else
     return (
@@ -18,8 +38,6 @@ function Modal({ visible, onCancel, children }) {
         </DarkBackground>
     );
 }
-
-export default Modal;
 
 const DarkBackground = styled.div`
     position: fixed;

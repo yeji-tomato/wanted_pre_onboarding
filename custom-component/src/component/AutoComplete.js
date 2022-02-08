@@ -7,7 +7,7 @@ function AutoComplete() {
     const [isInputValue, setIsInputValue] = useState('');
     const [isSearchList, setIsSerchedList] = useState([]);
     
-    const onchangeValue = (e) => setIsInputValue(e.target.value)
+    const onchangeValue = (e) =>  setIsInputValue(e.target.value);
     const onValueUpdate = (newValue) => setIsInputValue(newValue);
     const removeKeyword = () => {
         setIsInputValue('')

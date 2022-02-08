@@ -8,19 +8,13 @@ function Tag() {
 
   const onChangeHashtag = (e) => setIsHashTag(e.target.value);
 
-  // 중복 태그 isHashTagList에 추가하지 않기
-  const isDuplicate = (isNewHashTagList, newTag) => {
-    const dup = isNewHashTagList.find((tag) => tag === newTag);
-    if(!dup){
-      isNewHashTagList.push(newTag);
-      setIsHashTagList(isNewHashTagList)
-    }
-  }
-
   const addNewHashTag = (newTag) => {
-    const isNewHashTagList = [...isHashTagList];
-    setIsHashTag('');
-    isDuplicate(isNewHashTagList, newTag)
+    // 중복 태그 isHashTagList에 추가하지 않기
+    const dup = isHashTagList.find((tag) => tag === newTag);
+    if(!dup){
+      isHashTagList.push(newTag);
+    }
+    setIsHashTag('')
   }
 
   const onEnterKeyUp = (e) => {
@@ -30,7 +24,7 @@ function Tag() {
   }
 
   const removeHashtag = (id) => {
-    const isNewHashTagList = isHashTagList.filter((tag, idx) => idx !== id);
+    const isNewHashTagList = isHashTagList.filter((value, idx) => idx !== id);
     setIsHashTagList(isNewHashTagList);
   }
 

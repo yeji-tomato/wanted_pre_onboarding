@@ -5,16 +5,16 @@ function Tab() {
 
     const tabMenu = [
         {
-            num: 1,
-            content: 'ONE',
+            num: 'Tab 1',
+            content: 'Tab menu ONE',
         },
         {
-            num: 2,
-            content: 'TWO',
+            num: 'Tab 2',
+            content: 'Tab menu TWO',
         },
         {
-            num: 3,
-            content: 'THREE'
+            num: 'Tab 3',
+            content: 'Tab menu THREE'
         }
     ]
 
@@ -31,14 +31,14 @@ function Tab() {
                  className = {isTabSelected === idx ? "active" : ""}
                  onClick = {() => setIsTabSelected(idx)}
                 >
-                 Tab {value.num}
+                 {value.num}
                 </TabPane>
                 </>
             ))
         }
     </Tabs>
     <TabContent>
-        Tab menu {tabMenu[isTabSelected].content}
+        {tabMenu[isTabSelected].content}
     </TabContent>
     </>
   );
@@ -67,7 +67,6 @@ const TabPane = styled.li`
   &.active {
     color: ${props => props.theme.palette.white};
     box-shadow: inset 200px 0 0 0 ${props =>  props.theme.palette.purple };
-    
 }
 `
 const TabContent = styled.div`

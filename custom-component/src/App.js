@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Toggle from './component/Toggle';
 import Modal from './component/Modal';
@@ -7,7 +7,6 @@ import Tag from './component/Tag';
 import AutoComplete from './component/AutoComplete';
 import ClickToEdit from './component/ClickToEdit';
 import Card from './component/my_component/Card';
-import Button from './component/my_component/Button';
 
 function App() {
   
@@ -16,8 +15,6 @@ function App() {
     margin: 0 auto;
     padding: 20px 0;
   `
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
     <ThemeProvider
@@ -38,15 +35,7 @@ function App() {
             <Toggle />
         </Card>
         <Card title="Modal">
-          <Button onClick={() => setIsModalVisible(true)}>
-            Open Modal
-          </Button>
-          <Modal
-          visible={isModalVisible}
-          onCancel={() => setIsModalVisible(false)}
-          >
-            Hello Codestates!
-          </Modal>
+          <Modal/>
         </Card>
         <Card title="Tab">
           <Tab />
