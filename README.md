@@ -1,6 +1,6 @@
 # wanted_pre_onboarding
 > Netlify 배포 </br>
-[DEMO SITE](https://wanted-pre-onboarding-yeji.netlify.app/)
+[💜 DEMO SITE 💙](https://wanted-pre-onboarding-yeji.netlify.app/)
 
 ## 구현한 방법과 이유에 대한 간략한 내용
 > 구현되는 컴포넌트들이 다른 코드에서도 사용될 수 있다라는 생각으로 코드를 작성하였습니다. </br>
@@ -150,6 +150,9 @@ export default ClickToEdit;
 ```
 
 ## 자세한 실행 방법
+* **Netlify 배포**
+[👉 DEMO SITE](https://wanted-pre-onboarding-yeji.netlify.app/) </br>
+* **로컬 환경**
 1) `git clone https://github.com/Lee-ye-ji/wanted_pre_onboarding.git`
 2) `cd custom-component`
 3) `yarn i`
