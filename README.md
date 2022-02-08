@@ -29,7 +29,7 @@
 
 - **Toggle**
 > 🤯❓ : toggle의 on / off 상태에 따라 background가 왼쪽에서 오른쪽으로, 오른쪽에서 왼쪽으로 이동시키는 방법이 어려웠습니다.</br>
-> 😆❕ : 처음에는 transition과 animation을 이용하여 색을 변경시키려고 하였으나 계속된 실패를 통해 검색을 하였고, </br>
+> 😆❕ : 처음에는 transition과 animation을 이용하여 색을 변경시키려고 하였으나 계속된 실패를 통해 검색을 하였고, 
 > 그 결과 `linear-gradient`와 `background-size`를 이용하여 방법을 해결하였습니다.
 ```css
 // 슬라이드 애니메이션
