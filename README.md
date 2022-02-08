@@ -7,14 +7,18 @@
 >
 > 컴포넌트가 증가함에 따라 스타일 코드의 일관성을 유지하고 싶어서 사용되는 색상을 styled-component의 ThemeProvider를 이용하여 작성하였습니다.
 
-- `Toggle` 
-> 
-- `Modal`
-> 
-- Tab.js
-- Tag.js
-- AutoComplete.js
-- ClickToEdit.js
+- **Toggle** 
+👉`useState()`의 true false값으로 toggle의 on/off
+- **Modal**
+👉 `useState()`의 true false값으로 Modal 창 열림/ 닫힘
+- **Tab**
+👉 menu, content의 값을 변경할 수 있는 객체 변수 생성 및 클릭하는 menu값에 따라 content내용 보일 수 있게 `useState()` 이용함
+- **Tag**
+👉 입력되는 Tag값과 입력되어져 있는 TagList를 `useState()`로 만들어서 활용함
+- **AutoComplete**
+👉 입력되는 value값이랑 자동검색리스트를 `useState()`로 만들어서 활용함
+- **ClickToEdit**
+👉 name, age, 변경된 값 editValue를 `useState()`로 만들어서 활용함
 
 ## 구현하면서 어려웠던 점과 해결 방법 (Error Handling Log)
 | 🤯❓         | 어려웠던 점 |
@@ -67,7 +71,7 @@ function ModalWindow({ visible, onCancel, children }){
 }
 ```
 - **Tag**
-> 🤯❓: 선택한 태그를 삭제하고 삭제되지 않는 태그는 존재하는 코드를 깔끔하게 작성하는 방법이 어려웠습니다. </br> 
+> 🤯❓: 선택한 태그된 코드만 삭제하는 기능의 코드를 깔끔하게 작성하는 방법이 어려웠습니다. </br> 
 > 😆❕: 처음에는 for문을 통해 isHashTagList에 있는 변수의 index값과 삭제되어지는 index값을 비교하여 값이 같지 않다면 isNewHashTagList에 값을 넣고 그 후에 `setIsHashTagList(isNewHashTagList)`로 작성하였습니다. 하지만 코드를 더 편리하게 작성하는 방법이 없나라는 생각으로 비슷한 함수를 찾게 되었고, `filter함수`를 알게 되었습니다.
 그 결과 7줄이었던 코드가 단 2줄로 바뀔 수 있었습니다.
 ```jsx
@@ -84,10 +88,67 @@ function ModalWindow({ visible, onCancel, children }){
     setIsHashTagList(isNewHashTagList);
 ```
 - **AutoComplete**
-> 🤯❓:
-> 😆❕
+> 🤯❓: input에 값이 변경됨에 따라 일치하는 검색어를 나타내는 방법이 어려웠습니다. </br> 
+> 😆❕: 처음에는 `onchangeValue`함수에서 자동완성 리스트에 검색한 키워드가 있다면 검색된 리스트가 나올 수 있게 코드를 작성하였습니다.
+```jsx
+    const onchangeValue = (e) => {
+      setIsSerchedList(data.filter((item) => item.toLowerCase().includes(isInputValue.toLowerCase())));
+      setIsInputValue(e.target.value);
+    }
+```
+하지만 검색된 리스트의 반응이 느리다는 것을 깨닫고 난 후 `useEffect`함수를 사용해서 검색을 비교해주었습니다. 그 결과 알맞게 동작하는 것을 확인 할 수 있었습니다.
+```jsx
+    const onchangeValue = (e) =>  setIsInputValue(e.target.value);
+    useEffect(() => {
+      if(isInputValue){
+        setIsSerchedList(data.filter((item) => item.toLowerCase().includes(isInputValue.toLowerCase())))
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isInputValue]);
+```
 - **ClickToEdit**
-> 🤯❓:
-> 😆❕
+> 🤯❓: click후 결과 값이 바뀌게 만드는 방법이 어려웠습니다. </br> 
+> 😆❕: 처음에는 `name`, `age`로 상태를 구현하려고 했었습니다. 하지만 입력 값 변경 시 결과값이 바로 반영되었고, `editValue` 변수를 새롭게 만들고, input의 `onBlur` 함수를 이용하여 포커스가 해제될 때  `editValue`값이 변경되도록 구현하였습니다.
+```jsx
+function ClickToEdit() {
+
+    const [name, setName] = useState('김코딩');
+    const [age, setAge] = useState(20);
+    const [editValue, setEditValue] = useState({name, age});
+
+    const onBlurEdit = () => setEditValue({name, age})
+
+  return (
+    <>
+    <Form.Item>
+        <Form.Label>이름</Form.Label>
+        <Form.Input 
+        value={name} 
+        onChange={(e) => setName(e.target.value)}
+        onBlur={onBlurEdit}
+        />
+    </Form.Item>
+    <Form.Item>
+        <Form.Label>나이</Form.Label>
+        <Form.Input 
+        value={age} 
+        onChange={(e) => setAge(e.target.value)}
+        onBlur={onBlurEdit}
+        />
+    </Form.Item>
+    <Content>
+        <span>이름 {editValue.name}</span>
+        <span>나이 {editValue.age}</span>
+    </Content>
+    </>
+  );
+}
+
+export default ClickToEdit;
+```
 
 ## 자세한 실행 방법
+1) `git clone `
+2) `cd custom-component`
+3) `yarn i`
+4) `yarn run start`
