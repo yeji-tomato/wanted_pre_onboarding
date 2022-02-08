@@ -148,7 +148,7 @@ export default ClickToEdit;
 ```
 
 ## 자세한 실행 방법
-1) `git clone `
+1) `git clone https://github.com/Lee-ye-ji/wanted_pre_onboarding.git`
 2) `cd custom-component`
 3) `yarn i`
 4) `yarn run start`
